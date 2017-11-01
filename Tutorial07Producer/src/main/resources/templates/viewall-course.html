@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View All Courses</title>
+</head>
+<body>
+<h1>All Courses</h1>
+
+<div th:each="course,iterationStatus: ${courses}">
+    <h3 th:text="'No. ' + ${iterationStatus.count}">No. 1</h3>
+    <h3 th:text="'ID Course = ' + ${course.idCourse}">Course ID</h3>
+    <h3 th:text="'Name = ' + ${course.name}">Course Name</h3>
+    <h3 th:text="'Credits = ' + ${course.credits}">Course Credits</h3>
+    <h3>Mahasiswa yang mengambil</h3>
+    <ul th:each="student,iterationStatus: ${course.students}">
+        <li th:text="${student.name} + '-' + ${student.npm}" >
+            Nama Mahasiswa-NPM Mahasiswa
+        </li>
+    </ul>
+    <!--<a th:href="'/course/delete/' + ${course.idCourse}"> Delete Data</a><br/>-->
+    <!--<a th:href="'/course/update/' + ${course.idCourse}"> Update Data</a><br/>-->
+    <hr/>
+</div>
+</body>
+</html>
