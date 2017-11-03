@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.model.CourseModel;
 import com.example.service.CourseService;
 
+import java.util.List;
+
 @Controller
 public class CourseController {
 
@@ -44,5 +46,14 @@ public class CourseController {
             model.addAttribute ("id", id);
             return "not-found-course";
         }
+    }
+
+    @RequestMapping("/course/viewall")
+    public String view (Model model)
+    {
+        List<CourseModel> courses = courseDAO.selectAllCourses ();
+        model.addAttribute ("courses", courses);
+
+        return "viewall-course";
     }
 }

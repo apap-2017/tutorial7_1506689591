@@ -17,7 +17,6 @@ public class StudentServiceDatabase implements StudentService
     @Autowired
     private StudentMapper studentMapper;
 
-
     @Override
     public StudentModel selectStudent (String npm)
     {

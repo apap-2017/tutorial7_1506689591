@@ -8,6 +8,8 @@ import com.example.model.CourseModel;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class CourseServiceDatabase implements CourseService{
@@ -19,5 +21,12 @@ public class CourseServiceDatabase implements CourseService{
     public CourseModel selectCourse (String id) {
         log.info ("select course with id {}", id);
         return courseMapper.selectCourse(id);
+    }
+
+    @Override
+    public List<CourseModel> selectAllCourses ()
+    {
+        log.info ("select all students");
+        return courseMapper.selectAllCourses ();
     }
 }
