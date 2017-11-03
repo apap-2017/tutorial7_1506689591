@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title id="pageTitle">View All Students</title>
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+    </head>
+    <body>
+		<div th:replace="fragments/fragment :: header"></div>
+		<div class="container">
+			<h1>All Students</h1>
+			<!--<div th:each="student,iterationStatus: ${students}" th:class="${iterationStatus.odd}?'odd'">-->
+			<!--<h3 th:text="'No. ' + ${iterationStatus.count}">No. 1</h3>-->
+			<!--<h3 th:text="'NPM = ' + ${student.npm}">Student NPM</h3>-->
+			<!--<h3 th:text="'Name = ' + ${student.name}">Student Name</h3>-->
+			<!--<h3 th:text="'GPA = ' + ${student.gpa}">Student GPA</h3>-->
+			<!--&lt;!&ndash;<h3 th:if="${student.gpa>=3.49}">Cum Laude!</h3>&ndash;&gt;-->
+			<!--&lt;!&ndash;<h3 th:unless="${student.gpa>=3.49}">Sangat Memuaskan!</h3>&ndash;&gt;-->
+			<!--<h3 th:text="(${student.gpa}>=3.49) ? 'Cum Laude!' : 'Sangat Memuaskan!'"></h3>-->
+			<!--<h3>Kuliah yang diambil</h3>-->
+			<!--<ul th:each="course,iterationStatus: ${student.courses}">-->
+			<!--<li th:text="${course.name} + '-' + ${course.credits} + ' sks'" >-->
+			<!--Nama kuliah-X SKS-->
+			<!--</li>-->
+			<!--</ul>-->
+			<!--<a th:href="'/student/delete/' + ${student.npm}"> Delete Data</a><br/>-->
+			<!--<a th:href="'/student/update/' + ${student.npm}"> Update Data</a><br/>-->
+			<!--<hr/>-->
+			<!--</div>-->
+
+			<table class="table table-bordered">
+				<tr>
+					<th>No</th>
+					<th>NPM</th>
+					<th>Name</th>
+					<th>GPA</th>
+					<th>Cum Laude</th>
+					<th>Delete</th>
+					<th>Update</th>
+				</tr>
+				<th:block th:each="student,iterationStatus: ${students}">
+					<tr>
+						<td th:text="${iterationStatus.count}"></td>
+						<td th:text="${student.npm}" >Student NPM</td>
+						<td th:text="${student.name}" >Student Name </td>
+						<td th:text="${student.gpa}" >Student GPA </td>
+						<div th:switch="${student.gpa}">
+							<td th:if="${student.gpa>=3.49}">Cum Laude!</td>
+							<td th:unless="${student.gpa>=3.49}">Sangat Memuaskan!</td>
+						</div>
+						<td><a th:href="'/student/delete/' + ${student.npm}"> Delete Data</a></td>
+						<td><a th:href="'/student/update/' + ${student.npm}"> Update Data</a></td>
+					</tr>
+				</th:block>
+			</table>
+		</div>
+		<div th:replace="fragments/fragment :: footer"></div>
+    </body>
+</html>
